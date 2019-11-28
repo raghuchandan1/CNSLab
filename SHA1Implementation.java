@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.math.BigInteger;
 
 /**
  * A class that works like java.security.MessageDigest, and computes
@@ -132,5 +133,24 @@ public class SHA1 {
 		arr[off + 1] = (byte) ((value >> 16) & 0xff);
 		arr[off + 2] = (byte) ((value >> 8) & 0xff);
 		arr[off + 3] = (byte) ((value >> 0) & 0xff);
+	}
+	public static void main(String args[]){
+	    SHA1 sha =new SHA1();
+	    String s="GeeksforGeeks";
+	    byte[] b=s.getBytes();
+	    sha.update(b);
+	    byte[] messageDigest=sha.digest();
+	    BigInteger no = new BigInteger(1, messageDigest); 
+
+			// Convert message digest into hex value 
+			String hashtext = no.toString(16); 
+
+			// Add preceding 0s to make it 32 bit 
+			while (hashtext.length() < 32) { 
+				hashtext = "0" + hashtext; 
+			} 
+
+			// return the HashText 
+			System.out.print(hashtext);
 	}
 }
